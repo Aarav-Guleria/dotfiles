@@ -10,3 +10,6 @@ hosts.yml
 .histfile
 .sqlite_history
 telemetry/
+
+# Local only Neovim overrides
+nvim/lua/local/

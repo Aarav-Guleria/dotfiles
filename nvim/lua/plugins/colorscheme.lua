@@ -1,5 +1,12 @@
-vim.g.current_theme = "cyberdream" -- "tokyonight" | "kanagawa" | "catppuccin" | "dracula" | "rose-pine" | "gruvbox" | "zenbones" | "cyberdream"
+-- Default theme (TRACKED)
+vim.g.current_theme = "cyberdream"
+-- "tokyonight" | "kanagawa" | "catppuccin" | "dracula"
+-- | "rose-pine" | "gruvbox" | "zenbones" | "cyberdream"
 
+-- Local override (UNTRACKED)
+pcall(dofile, vim.fn.stdpath("config") .. "/lua/local/theme.lua")
+
+-- Capture final value AFTER override
 local current = vim.g.current_theme
 
 -- Core UI settings
@@ -7,7 +14,6 @@ vim.o.termguicolors = true
 vim.o.background = "dark"
 
 return {
-
   --------------------------------------------------------------------
   -- TOKYONIGHT (TRANSPARENT)
   --------------------------------------------------------------------
