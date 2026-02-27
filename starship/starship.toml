@@ -1,0 +1,53 @@
+# ───────── GLOBAL ─────────
+add_newline = true
+command_timeout = 500
+right_format = "$time"
+
+# ───────── TIME ─────────
+[time]
+disabled = false
+format = "[$time](fg:#9aa5ce)"
+
+# ───────── PROMPT SYMBOL ─────────
+[character]
+success_symbol = "[ ❯](fg:#7dcfff)"
+error_symbol = "[ ❯](fg:#f7768e)"
+
+# ───────── DIRECTORY ─────────
+[directory]
+style = "fg:#7aa2f7"
+truncate_to_repo = false
+read_only = " "
+format = "[$path$read_only]($style) "
+
+# ───────── GIT ─────────
+[git_branch]
+symbol = " "
+style = "fg:#bb9af7"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "fg:#f7768e"
+format = "[$all_status$ahead_behind]($style) "
+
+# ───────── GO  ─────────
+[golang]
+symbol = ""
+style = "fg:#7dcfff"
+format = "[$symbol]($style) "
+
+# HARD detection — no leaks
+detect_files = ["go.mod"]
+detect_extensions = []
+detect_folders = []
+
+# ───────── SHELL ─────────
+[shell]
+zsh_indicator = "zsh"
+format = "[$indicator](fg:#9aa5ce) "
+disabled = true
+
+# ───────── CMD DURATION ─────────
+[cmd_duration]
+min_time = 800
+format = "[$duration](fg:#9aa5ce) "

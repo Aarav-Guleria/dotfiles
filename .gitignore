@@ -1,0 +1,12 @@
+# Secrets
+secrets.env
+hosts.yml
+
+# Editor junk
+*.swp
+*.log
+
+# History & cache
+.histfile
+.sqlite_history
+telemetry/
