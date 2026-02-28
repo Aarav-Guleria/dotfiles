@@ -1,76 +1,62 @@
-# options: p10k or starship
+#####  STARSHIP CONFIG
 
-# PROMPT_ENGINE="p10k"
-PROMPT_ENGINE="starship"
-
-#####  powerlevel10k instant prompt
-#####  (MUST BE AT THE TOP)
-
-if [[ "$PROMPT_ENGINE" == "p10k" ]]; then
-  typeset -g POWERLEVEL9K_MODE=vi
-fi
-
-#####  STARSHIP CONFIG (ONLY IF USED)
-
-if [[ "$PROMPT_ENGINE" == "starship" ]]; then
-  export STARSHIP_CONFIG="$HOME/.config/starship.toml"
-else
-  unset STARSHIP_CONFIG
-fi
+export STARSHIP_CONFIG="$HOME/.config/starship.toml"
 
 #####  BASIC SHELL SETTINGS
 
 DISABLE_AUTO_TITLE="true"
 
 # History
-HISTSIZE=1000
-SAVEHIST=1000
 HISTFILE=~/.histfile
+HISTSIZE=50000
+SAVEHIST=50000
 HIST_STAMPS="yyyy-mm-dd"
 
-export TERM="xterm-256color"
+setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+# setopt HIST_IGNORE_SPACE
+setopt HIST_VERIFY
+
+#####  TERMINAL
+
+# Only set outside tmux
+[[ -z "$TMUX" ]] && export TERM="xterm-256color"
 
 #####  OH-MY-ZSH
-
 export ZSH="$HOME/.oh-my-zsh"
-
-# Theme is handled manually (p10k section below)
-# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
   git
   zsh-autosuggestions
-  zsh-syntax-highlighting
+  zsh-syntax-highlighting # must be last
 )
 
-# Dynamic theme selection
-if [[ "$PROMPT_ENGINE" == "p10k" ]]; then
-  ZSH_THEME="powerlevel10k/powerlevel10k"
-else
-  ZSH_THEME=""
-fi
+# No OMZ theme (starship handles prompt)
+ZSH_THEME=""
 
 source "$ZSH/oh-my-zsh.sh"
 
-#####  PROMPT ENGINE LOAD
+#####  PROMPT
 
-if [[ "$PROMPT_ENGINE" == "p10k" ]]; then
-  [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-elif [[ "$PROMPT_ENGINE" == "starship" ]]; then
-  eval "$(starship init zsh)"
-fi
+eval "$(starship init zsh)"
 
 #####  EDITOR
 
 if [[ -n $SSH_CONNECTION ]]; then
+  export VISUAL=vim
   export EDITOR=vim
 else
+  export VISUAL=nvim
   export EDITOR=nvim
 fi
 
 #####  KEYBINDINGS & OPTIONS
 
 bindkey -v
+export KEYTIMEOUT=1
 bindkey '^R' history-incremental-search-backward
 unsetopt correct
 
@@ -87,6 +73,9 @@ nvm() {
   [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
   nvm "$@"
 }
+node() { unset -f node; nvm; node "$@"; }
+npm()  { unset -f npm;  nvm; npm  "$@"; }
+npx()  { unset -f npx;  nvm; npx  "$@"; }
 
 #####  FZF
 
@@ -101,15 +90,13 @@ eval "$(zoxide init zsh)"
 
 alias zshconfig="nvim ~/.zshrc"
 alias omzconfig="nvim ~/.oh-my-zsh"
-
 alias rm="rm -i"
 
-# eza
 alias ls='eza --icons --group-directories-first --git'
 alias ll='eza -lah --icons --group-directories-first --git'
 alias la='eza -a --icons --group-directories-first --git'
 alias tree='eza --tree'
 
-#####  SECRETS (like passwords or api) (KEEP LAST)
+#####  SECRETS (KEEP LAST)
 
 [ -f ~/.config/secrets.env ] && source ~/.config/secrets.env
