@@ -1,8 +1,8 @@
 -- Default theme (TRACKED)
 -- vim.g.current_theme = "cyberdream" --uncomment to set theme
 
--- "tokyonight" | "kanagawa" | "catppuccin" | "dracula"
--- | "rose-pine" | "gruvbox" | "zenbones" | "cyberdream"
+-- "tokyonight" | "kanagawa" | "catppuccin" | "cyberdream"
+-- "rose-pine" | "gruvbox-material" | "zenbones"
 
 -- Local override (UNTRACKED)
 pcall(dofile, vim.fn.stdpath("config") .. "/lua/local/theme.lua")
@@ -102,28 +102,16 @@ return {
   -- GRUVBOX
   --------------------------------------------------------------------
   {
-    "ellisonleao/gruvbox.nvim",
-    lazy = current ~= "gruvbox",
+    "sainnhe/gruvbox-material",
+    lazy = current ~= "gruvbox-material",
     priority = 1000,
     config = function()
-      require("gruvbox").setup({
-        contrast = "hard", --hard, medium
-        transparent_mode = false,
-        italic = {
-          strings = false,
-          emphasis = false,
-          comments = false,
-          operators = false,
-          folds = false,
-        },
-        bold = true,
-        overrides = {
-          Comment = { fg = "#927374", italic = true },
-        },
-      })
+      vim.g.gruvbox_material_background = "hard"
+      vim.g.gruvbox_material_enable_italic = false
+      vim.g.gruvbox_material_enable_bold = true
 
-      if current == "gruvbox" then
-        vim.cmd.colorscheme("gruvbox")
+      if current == "gruvbox-material" then
+        vim.cmd.colorscheme("gruvbox-material")
       end
     end,
   },
@@ -189,7 +177,7 @@ return {
       vim.g.zenbones_palette = "default"
 
       if current == "zenbones" then
-        vim.cmd.colorscheme("") -- "rosebones", "duckbones" etc.
+        vim.cmd.colorscheme("randombones_dark") -- "rosebones", "duckbones" etc.
       end
     end,
   },

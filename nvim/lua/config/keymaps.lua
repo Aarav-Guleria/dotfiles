@@ -3,7 +3,7 @@
 -- Add any additional keymaps here
 
 -- Fast escape from insert mode
-vim.keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true })
+vim.keymap.set("i", "kj", "<Esc>", { noremap = true, silent = true })
 
 -- for vim-tmux-navigator.lua
 vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>")

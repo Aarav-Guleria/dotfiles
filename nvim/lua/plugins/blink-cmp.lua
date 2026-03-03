@@ -24,6 +24,11 @@ return {
         --   },
         -- },
 
+        menu = {
+          border = "rounded",
+          winblend = 10,
+        },
+
         documentation = {
           auto_show = false, -- turn OFF
         },
