@@ -26,7 +26,7 @@ return {
 
         menu = {
           border = "rounded",
-          winblend = 10,
+          -- winblend = 10,
         },
 
         documentation = {
