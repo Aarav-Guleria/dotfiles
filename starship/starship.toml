@@ -1,53 +1,272 @@
-# ───────── GLOBAL ─────────
-add_newline = true
-command_timeout = 500
-right_format = "$time"
+# # ───────── GLOBAL ─────────
+# add_newline = true
+# command_timeout = 500
+# right_format = "$time"
+#
+# # ───────── TIME ─────────
+# [time]
+# disabled = false
+# format = "[$time](fg:#9aa5ce)"
+#
+# # ───────── PROMPT SYMBOL ─────────
+# [character]
+# success_symbol = "[ ❯](fg:#7dcfff)"
+# error_symbol = "[ ❯](fg:#f7768e)"
+#
+# # ───────── DIRECTORY ─────────
+# [directory]
+# style = "fg:#7aa2f7"
+# truncate_to_repo = false
+# read_only = " "
+# format = "[$path$read_only]($style) "
+#
+# # ───────── GIT ─────────
+# [git_branch]
+# symbol = " "
+# style = "fg:#bb9af7"
+# format = "[$symbol$branch]($style) "
+#
+# [git_status]
+# style = "fg:#f7768e"
+# format = "[$all_status$ahead_behind]($style) "
+#
+# # ───────── GO  ─────────
+# [golang]
+# symbol = ""
+# style = "fg:#7dcfff"
+# format = "[$symbol]($style) "
+#
+# # HARD detection — no leaks
+# detect_files = ["go.mod"]
+# detect_extensions = []
+# detect_folders = []
+#
+# # ───────── SHELL ─────────
+# [shell]
+# zsh_indicator = "zsh"
+# format = "[$indicator](fg:#9aa5ce) "
+# disabled = true
+#
+# # ───────── CMD DURATION ─────────
+# [cmd_duration]
+# min_time = 800
+# format = "[$duration](fg:#9aa5ce) "
 
-# ───────── TIME ─────────
-[time]
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[](surface0)\
+$os\
+$username\
+[](bg:peach fg:surface0)\
+$directory\
+[](fg:peach bg:green)\
+$git_branch\
+$git_status\
+[](fg:green bg:teal)\
+$c\
+$rust\
+$golang\
+$nodejs\
+$java\
+$python\
+[](fg:teal bg:blue)\
+$docker_context\
+[](fg:blue bg:purple)\
+$time\
+[ ](fg:purple)\
+$line_break$character"""
+
+palette = 'catppuccin_mocha'
+
+[palettes.gruvbox_dark]
+rosewater = "#ebdbb2"
+flamingo  = "#ebdbb2"
+pink      = "#d3869b"
+orange    = "#fe8019"
+red       = "#fb4934"
+maroon    = "#cc241d"
+peach     = "#fe8019"
+yellow    = "#fabd2f"
+green     = "#b8bb26"
+teal      = "#8ec07c"
+sky       = "#83a598"
+sapphire  = "#458588"
+blue      = "#83a598"
+lavender  = "#b16286"
+
+text      = "#ebdbb2"
+subtext1  = "#d5c4a1"
+subtext0  = "#bdae93"
+
+overlay2  = "#a89984"
+overlay1  = "#928374"
+overlay0  = "#7c6f64"
+
+surface2  = "#665c54"
+surface1  = "#504945"
+surface0  = "#3c3836"
+
+base      = "#282828"
+mantle    = "#1d2021"
+crust     = "#141617"
+
+[palettes.catppuccin_mocha]
+rosewater = "#e4c8c6"
+flamingo  = "#e1bcbc"
+pink      = "#e4b0d7"
+orange    = "#b48fe1"
+red       = "#df7895"
+maroon    = "#d6909b"
+peach     = "#e6a577"
+yellow    = "#e6cf9a"
+green     = "#8fcb8b"
+teal      = "#7cc9be"
+sky       = "#75c3d1"
+sapphire  = "#62b1d4"
+blue      = "#739ee3"
+lavender  = "#9fa9e6"
+
+text      = "#b8c1e2"
+subtext1  = "#a7afd1"
+subtext0  = "#949bbd"
+
+overlay2  = "#8187a0"
+overlay1  = "#6f748f"
+overlay0  = "#5d617d"
+
+surface2  = "#4c4f63"
+surface1  = "#3a3c4e"
+surface0  = "#27293a"
+
+base      = "#181826"
+mantle    = "#14141f"
+crust     = "#0d0d15"
+
+[palettes.tokyonight]
+blue      = "#7aa2f7"
+cyan      = "#7dcfff"
+green     = "#9ece6a"
+orange    = "#ff9e64"
+red       = "#f7768e"
+purple    = "#bb9af7"
+yellow    = "#e0af68"
+
+text      = "#c0caf5"
+subtext1  = "#a9b1d6"
+subtext0  = "#9aa5ce"
+
+surface2  = "#565f89"
+surface1  = "#414868"
+surface0  = "#24283b"
+
+base      = "#1a1b26"
+mantle    = "#16161e"
+crust     = "#11111b"
+
+[os]
 disabled = false
-format = "[$time](fg:#9aa5ce)"
+style = "bg:surface0 fg:text"
 
-# ───────── PROMPT SYMBOL ─────────
-[character]
-success_symbol = "[ ❯](fg:#7dcfff)"
-error_symbol = "[ ❯](fg:#f7768e)"
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = ""
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
 
-# ───────── DIRECTORY ─────────
+[username]
+show_always = true
+style_user = "bg:surface0 fg:text"
+style_root = "bg:surface0 fg:text"
+format = '[ $user ]($style)'
+
 [directory]
-style = "fg:#7aa2f7"
-truncate_to_repo = false
-read_only = " "
-format = "[$path$read_only]($style) "
+style = "fg:mantle bg:peach"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = "…/"
 
-# ───────── GIT ─────────
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
+
 [git_branch]
-symbol = " "
-style = "fg:#bb9af7"
-format = "[$symbol$branch]($style) "
+symbol = ""
+style = "bg:teal"
+format = '[[ $symbol $branch ](fg:base bg:green)]($style)'
 
 [git_status]
-style = "fg:#f7768e"
-format = "[$all_status$ahead_behind]($style) "
+style = "bg:teal"
+format = '[[($all_status$ahead_behind )](fg:base bg:green)]($style)'
 
-# ───────── GO  ─────────
+[nodejs]
+symbol = ""
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
+
+[c]
+symbol = " "
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
+
+[rust]
+symbol = ""
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
+
 [golang]
 symbol = ""
-style = "fg:#7dcfff"
-format = "[$symbol]($style) "
+style = "bg:teal"
+format = '[[ $symbol ](fg:base bg:teal)]($style)'
 
-# HARD detection — no leaks
-detect_files = ["go.mod"]
-detect_extensions = []
-detect_folders = []
+[java]
+symbol = " "
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
 
-# ───────── SHELL ─────────
-[shell]
-zsh_indicator = "zsh"
-format = "[$indicator](fg:#9aa5ce) "
-disabled = true
+[python]
+symbol = ""
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
 
-# ───────── CMD DURATION ─────────
-[cmd_duration]
-min_time = 800
-format = "[$duration](fg:#9aa5ce) "
+[docker_context]
+symbol = ""
+style = "bg:mantle"
+format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:peach"
+format = '[[  $time ](fg:mantle bg:purple)]($style)'
+
+[line_break]
+disabled = false
+
+[character]
+disabled = false
+success_symbol = '[❯](bold fg:green)'
+error_symbol = '[❯](bold fg:red)'
+vimcmd_symbol = '[❮](bold fg:green)'
+vimcmd_replace_one_symbol = '[❮](bold fg:purple)'
+vimcmd_replace_symbol = '[❮](bold fg:purple)'
+vimcmd_visual_symbol = '[❮](bold fg:lavender)'
